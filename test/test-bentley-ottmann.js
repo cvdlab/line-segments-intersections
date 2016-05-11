@@ -1,5 +1,13 @@
 let intersections = require('../src/bentley–ottmann');
-let data = require('./fixture/data.json');
+let assert = require('chai').assert;
 
-let output = intersections(data);
-console.log(output);
+
+describe('cross intersection', function () {
+  it('test trought cross.json', function () {
+    let data = require('./fixture/cross.json');
+
+    let result = intersections(data.input);
+    assert.deepEqual(result, data.expected);
+
+  });
+});
