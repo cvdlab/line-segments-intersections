@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/cvdlab/line-segments-intersections/issues"
   },
-  "homepage": "https://github.com/cvdlab/line-segments-intersections#readme"
+  "homepage": "https://github.com/cvdlab/line-segments-intersections#readme",
+  "dependencies": {
+    "line-intersect": "^1.0.0"
+  }
 }

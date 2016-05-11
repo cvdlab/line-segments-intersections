@@ -1,3 +1,1 @@
-import intersections from './src/intersections';
-
-export default intersections;
+module.exports = require('./src/bentley–ottmann');
