@@ -1,0 +1,24 @@
+{
+  "name": "line-segments-intersections",
+  "version": "0.0.0",
+  "description": "An implementation of the Bentley–Ottmann sweep line algorithm for detecting crossings in a set of line segments.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvdlab/line-segments-intersections.git"
+  },
+  "keywords": [
+    "Bentley–Ottmann",
+    "line",
+    "segments"
+  ],
+  "author": "cvdlab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cvdlab/line-segments-intersections/issues"
+  },
+  "homepage": "https://github.com/cvdlab/line-segments-intersections#readme"
+}
