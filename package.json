@@ -4,7 +4,7 @@
   "description": "An implementation of the Bentley–Ottmann sweep line algorithm for detecting crossings in a set of line segments.",
   "main": "index.js",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
