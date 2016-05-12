@@ -93,7 +93,7 @@ let bentleyOttmann = (lines) => {
         lineAbove = sl.getLine(pos - 1);
         if (lineAbove) {
           intersection = intersect(event.line, lineAbove);
-          if (intersection) intersections.push(intersection);
+          if (intersection) eq.enqueueSwapEvent(event.line, lineAbove, intersection);
         }
 
         lineBelow = sl.getLine(pos + 1);
