@@ -1,4 +1,5 @@
 var intersect = require('./intersect');
+let LinesList = require('./lines-list');
 
 
 const A = {v0: {x: 10, y: 10}, v1: {x: 0, y: 0}};
@@ -36,71 +37,19 @@ let linesComparator = (a, b) => {
 
 //console.log(rearrangeLinesVertices([A, B]));
 
-class LinesList {
-  constructor(comparator) {
-    this.lines = [];
-    this.comparator = comparator;
-  }
 
-  getLine(position) {
-    return this.lines[position];
-  }
 
-  add(line) {
-    let comparator = this.comparator;
-    let lines = this.lines;
-    let pos = 0;
+var sl = new LinesList(linesComparator);
+sl.add(A);
+sl.add(B);
+sl.add(C);
 
-    while (pos < lines.length) {
-      let cur = lines[pos];
-      if (comparator(line, cur) > 0)
-        pos++;
-      else
-        break;
-    }
+console.log(sl.lines);
 
-    lines.splice(pos, 0, line);
+sl.swap(A, C);
 
-    return pos;
-  }
+console.log(sl.lines);
 
-  remove(line) {
-    let lines = this.lines;
-    let pos = this.search(line);
-
-    lines.splice(pos, 1);
-
-    return pos;
-  }
-
-  swap(lineA, lineB) {
-    let lines = this.lines;
-    let posA = this.search(lineA);
-    let posB = this.search(lineB);
-
-    lines[posA] = lineB;
-    lines[posB] = lineA;
-
-    return [posA, posB];
-  }
-
-  search(searchedLine) {
-    return this.lines.indexOf(searchedLine)
-  }
-}
-
-//
-//var sl = new LinesList(linesComparator);
-//sl.add(A);
-//sl.add(B);
-//sl.add(C);
-//
-//console.log(sl.lines);
-//
-//sl.swap(A, C);
-//
-//console.log(sl.lines);
-//
 
 
 
