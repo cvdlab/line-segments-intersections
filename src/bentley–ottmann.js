@@ -3,6 +3,7 @@ var intersect = require('./intersect');
 
 const A = {v0: {x: 10, y: 10}, v1: {x: 0, y: 0}};
 const B = {v0: {x: 10, y: 0}, v1: {x: 0, y: 10}};
+const C = {v0: {x: 5, y: 3}, v1: {x: 10, y: 7}};
 
 let verticesComparator = (a, b) => {
   if (a.x === b.x) {
@@ -84,23 +85,22 @@ class LinesList {
   }
 
   search(searchedLine) {
-    let index = this.lines.filter((line) => {
-      return searchedLine === line;
-    })
+    return this.lines.indexOf(searchedLine)
   }
 }
 
-
-var sl = new LinesList(linesComparator);
-sl.add(A);
-sl.add(B);
-
+//
+//var sl = new LinesList(linesComparator);
+//sl.add(A);
+//sl.add(B);
+//sl.add(C);
+//
 //console.log(sl.lines);
-
-sl.swap(A, B);
-
-console.log(sl.lines);
-
+//
+//sl.swap(A, C);
+//
+//console.log(sl.lines);
+//
 
 
 
