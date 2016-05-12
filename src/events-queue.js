@@ -53,7 +53,7 @@ class EventsQueue {
       pos++;
     }
 
-    console.log(pos);
+    //console.log(pos);
 
     events.splice(pos, 0, event);
     return pos;

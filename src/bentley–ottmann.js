@@ -40,7 +40,6 @@ let linesComparator = (a, b) => {
 //console.log(rearrangeLinesVertices([A, B]));
 
 
-
 //var sl = new LinesList(linesComparator);
 //sl.add(A);
 //sl.add(B);
@@ -51,7 +50,6 @@ let linesComparator = (a, b) => {
 //sl.swap(A, C);
 //
 //console.log(sl.lines);
-
 
 
 //var eq = new EventsQueue();
@@ -67,6 +65,90 @@ let linesComparator = (a, b) => {
 
 //console.log(eq.events);
 
+
+let bentleyOttmann = (lines) => {
+
+  lines = rearrangeLinesVertices(lines);
+  let eq = new EventsQueue();
+  let sl = new LinesList(linesComparator);
+  let intersections = [];
+
+  lines.forEach(line => {
+    eq.enqueueAddEvent(line);
+    eq.enqueueRemoveEvent(line);
+  });
+
+  let event;
+
+  while (event = eq.next()) {
+    let pos;
+    let lineAbove = false, lineBelow = false, intersection = false;
+
+    console.log(event);
+
+    switch (event.type) {
+
+      case EventsQueue.ADD:
+        pos = sl.add(event.line);
+        lineAbove = sl.getLine(pos - 1);
+        if (lineAbove) {
+          intersection = intersect(event.line, lineAbove);
+          if (intersection) intersections.push(intersection);
+        }
+
+        lineBelow = sl.getLine(pos + 1);
+        if (lineBelow) {
+          intersection = intersect(event.line, lineBelow);
+          if (intersection) eq.enqueueSwapEvent(event.line, lineBelow, intersection);
+
+        }
+        break;
+
+      case EventsQueue.REMOVE:
+        pos = sl.remove(event.line);
+        lineAbove = sl.getLine(pos - 1);
+        lineBelow = sl.getLine(pos);
+        if (lineAbove && lineBelow) {
+          intersection = intersect(lineAbove, lineBelow);
+          if (intersection) eq.enqueueSwapEvent(lineAbove, lineBelow, intersection);
+        }
+        break;
+
+      case EventsQueue.SWAP:
+        intersections.push(event.vertex);
+        pos = sl.swap(event.lineA, event.lineB);
+        lineAbove = sl.getLine(pos[0] - 1);
+        lineBelow = sl.getLine(pos[1] + 1);
+        if (lineAbove) {
+          intersection = intersect(event.lineA, lineAbove);
+          if (intersection) eq.enqueueSwapEvent(event.lineA, lineAbove, intersection);
+        }
+        if (lineBelow) {
+          intersection = intersect(event.lineB, lineBelow);
+          if (intersection) eq.enqueueSwapEvent(event.lineB, lineBelow, intersection);
+        }
+        break;
+
+      default:
+        throw new Error('unrecognized type');
+    }
+
+  }
+
+
+  console.log('intersections', intersections);
+  return intersections;
+
+  //console.log(eq);
+  //console.log(lines);
+
+
+};
+
+
+bentleyOttmann([
+  A, B, C
+]);
 
 
 //
@@ -117,3 +199,6 @@ let linesComparator = (a, b) => {
 //  return [{x: 5, y: 5}];
 //
 //};
+
+
+

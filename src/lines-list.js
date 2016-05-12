@@ -1,4 +1,3 @@
-
 class LinesList {
   constructor(comparator) {
     this.lines = [];
@@ -6,7 +5,10 @@ class LinesList {
   }
 
   getLine(position) {
-    return this.lines[position];
+    if (0 <= position && position <= this.lines.length)
+      return this.lines[position];
+    else
+      return false;
   }
 
   add(line) {
