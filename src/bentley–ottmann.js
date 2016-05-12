@@ -147,7 +147,7 @@ let bentleyOttmann = (lines) => {
 
 
 bentleyOttmann([
-  A, B, C
+  A, B, C, D
 ]);
 
 

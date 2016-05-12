@@ -30,9 +30,11 @@ class EventsQueue {
   }
 
   next() {
+    if(this.current >= this.events.length) return false;
+
     let event = this.events[this.current];
     this.current++;
-    return event || false;
+    return event;
   }
 
   reset() {
