@@ -117,8 +117,8 @@ let bentleyOttmann = (lines) => {
       case EventsQueue.SWAP:
         intersections.push(event.vertex);
         pos = sl.swap(event.lineA, event.lineB);
-        lineAbove = sl.getLine(pos[0] - 1);
-        lineBelow = sl.getLine(pos[1] + 1);
+        lineAbove = sl.getLine(pos[1] - 1);
+        lineBelow = sl.getLine(pos[0] + 1);
         if (lineAbove) {
           intersection = intersect(event.lineA, lineAbove);
           if (intersection) eq.enqueueSwapEvent(event.lineA, lineAbove, intersection);
