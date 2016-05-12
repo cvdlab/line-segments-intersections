@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/cvdlab/line-segments-intersections#readme",
   "dependencies": {
-    "line-intersect": "^1.0.0"
+    "line-intersect": "^1.0.0",
+    "node-inspector": "^0.12.8"
   },
   "devDependencies": {
     "chai": "^3.5.0",
