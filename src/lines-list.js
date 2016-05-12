@@ -5,7 +5,7 @@ class LinesList {
   }
 
   getLine(position) {
-    if (0 <= position && position <= this.lines.length)
+    if (0 <= position && position < this.lines.length)
       return this.lines[position];
     else
       return false;
