@@ -135,7 +135,7 @@ let bentleyOttmann = (lines) => {
 
     console.log('eq', eq.toString());
     console.log('sl', sl.toString());
-    console.log('\n');
+    console.log('');
 
   }
 
@@ -169,57 +169,5 @@ console.log('bentley-ottman', bentleyOttmann([
 console.log('trivial-intersections', trivialInserctions([
   A, B, C, D
 ]));
-
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//console.log(22);
-//
-//
-////
-//let swapLinesVertices = function(lines){
-//  return lines.map(line => {
-//
-//
-//
-//
-//
-//
-//  })
-//};
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-////
-////
-////
-////module.exports = function (lines) {
-////
-////
-////
-////
-////  let eq = extractVertices(lines);
-//
-//
-//
-//  return [{x: 5, y: 5}];
-//
-//};
-
 
 
