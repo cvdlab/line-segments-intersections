@@ -52,20 +52,6 @@ let linesComparator = (a, b) => {
 //console.log(sl.lines);
 
 
-//var eq = new EventsQueue();
-//
-//eq.enqueueAddEvent(C);
-//eq.enqueueAddEvent(B);
-//console.log(eq.next());
-//eq.enqueueAddEvent(A);
-//console.log(eq.next());
-//console.log(eq.next());
-//console.log(eq.next());
-
-
-//console.log(eq.events);
-
-
 let bentleyOttmann = (lines) => {
 
   lines = rearrangeLinesVertices(lines);
@@ -75,6 +61,9 @@ let bentleyOttmann = (lines) => {
 
   lines.forEach(line => {
     eq.enqueueAddEvent(line);
+  });
+
+  lines.forEach(line => {
     eq.enqueueRemoveEvent(line);
   });
 
@@ -162,12 +151,20 @@ let trivialInserctions = (lines) => {
   return intersections;
 };
 
-console.log('bentley-ottman', bentleyOttmann([
-  A, B, C, D
-]));
+//console.log('bentley-ottman', bentleyOttmann([
+//  A, B, C, D
+//]));
+//
+//console.log('trivial-intersections', trivialInserctions([
+//  A, B, C, D
+//]));
 
-console.log('trivial-intersections', trivialInserctions([
-  A, B, C, D
-]));
+let C1 = rearrangeLinesVertices([C])[0];
+let D1 = rearrangeLinesVertices([D])[0];
 
-
+var eq = new EventsQueue();
+eq.enqueueAddEvent(C1);
+eq.enqueueRemoveEvent(C1);
+eq.enqueueAddEvent(D1);
+eq.enqueueRemoveEvent(D1);
+console.log(eq.events);
