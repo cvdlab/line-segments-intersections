@@ -1,9 +1,10 @@
 let bentleyOttmann = require('./bentley–ottmann');
+let trivialIntersections = require('./trivial-intersections');
 let fs = require('fs');
 let path = require('path');
 
 
-function generateRandomSegments(count, width, height) {
+function generateRandomSegments(count, width, height, generator) {
 
   let segments = [];
 
@@ -20,7 +21,7 @@ function generateRandomSegments(count, width, height) {
     });
   }
 
-  let intersections = bentleyOttmann(segments);
+  let intersections = generator(segments);
 
   console.log(segments);
   console.log(intersections);
@@ -45,4 +46,5 @@ function generateRandomSegments(count, width, height) {
 }
 
 
-generateRandomSegments(100, 500, 500);
+//generateRandomSegments(100, 500, 500, bentleyOttmann);
+generateRandomSegments(100, 500, 500, trivialIntersections);
