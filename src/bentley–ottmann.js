@@ -3,10 +3,10 @@ let LinesList = require('./lines-list');
 let EventsQueue = require('./events-queue');
 
 
-const A = {v0: {x: 10, y: 10}, v1: {x: 0, y: 0}};
-const B = {v0: {x: 10, y: 0}, v1: {x: 0, y: 10}};
-const C = {v0: {x: 5, y: 3}, v1: {x: 10, y: 7}};
-const D = {v0: {x: 15, y: 3}, v1: {x: 10, y: 7}};
+const A = {v0: {x: 10, y: 10},v1: {x: 0, y: 0},  id:'A'};
+const B = {v0: {x: 10, y: 0}, v1: {x: 0, y: 10}, id:'B'};
+const C = {v0: {x: 5, y: 3},  v1: {x: 10, y: 7}, id:'C'};
+const D = {v0: {x: 15, y: 3}, v1: {x: 10, y: 7}, id:'D'};
 
 let verticesComparator = (a, b) => {
   if (a.x === b.x) {
@@ -132,6 +132,9 @@ let bentleyOttmann = (lines) => {
       default:
         throw new Error('unrecognized type');
     }
+
+    console.log('eq', eq.toString());
+    console.log('sl', sl.toString());
 
   }
 

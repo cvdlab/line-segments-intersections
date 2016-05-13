@@ -60,6 +60,14 @@ class EventsQueue {
     events.splice(pos, 0, event);
     return pos;
   }
+
+  toString(){
+    return this.events.map(event => {
+      let {type, vertex} = event;
+      let linesID = (event.line) ? event.line.id : event.lineA.id + event.lineB.id;
+      return `${type}:${vertex.x}:${vertex.y}:${linesID}`;
+    }).join(',');
+  }
 }
 
 EventsQueue.ADD = 'ADD';

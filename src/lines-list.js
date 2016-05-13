@@ -52,6 +52,12 @@ class LinesList {
   search(searchedLine) {
     return this.lines.indexOf(searchedLine)
   }
+
+  toString(){
+    return this.lines.map(line => {
+      return `${line.id}`;
+    }).join(',');
+  }
 }
 
 module.exports = LinesList;
