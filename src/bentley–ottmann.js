@@ -182,3 +182,6 @@ console.log('bentley-ottman', bentleyOttmann([
 //eq.enqueueAddEvent(D1);
 //eq.enqueueRemoveEvent(D1);
 //console.log(eq.events);
+
+
+module.exports = bentleyOttmann;
