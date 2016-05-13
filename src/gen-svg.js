@@ -47,5 +47,5 @@ function generateRandomSegments(count, width, height, generator) {
 }
 
 
-generateRandomSegments(5, 500, 500, bentleyOttmann);
+generateRandomSegments(100, 500, 500, bentleyOttmann);
 //generateRandomSegments(100, 500, 500, trivialIntersections);

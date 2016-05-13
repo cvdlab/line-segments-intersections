@@ -1,7 +1,9 @@
 class LinesList {
-  constructor(comparator) {
+  constructor() {
     this.lines = [];
-    this.comparator = comparator;
+    this.comparator = (a, b) => {
+      return (a.v0.y < b.v0.y) ? 1 : -1;
+    };
   }
 
   getLine(position) {
