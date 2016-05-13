@@ -145,10 +145,27 @@ let bentleyOttmann = (lines) => {
 
 };
 
+let trivialInserctions = (lines) => {
+  let intersections = [];
+  lines.forEach(lineA => {
+    lines.forEach(lineB => {
 
-bentleyOttmann([
+      let intersection = intersect(lineA, lineB);
+      if(intersection) intersections.push(intersection);
+
+    })
+  });
+  return intersections;
+};
+
+console.log('bentley-ottman', bentleyOttmann([
   A, B, C, D
-]);
+]));
+
+console.log('trivial-intersections', trivialInserctions([
+  A, B, C, D
+]));
+
 
 
 //
