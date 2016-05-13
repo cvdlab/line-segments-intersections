@@ -135,6 +135,7 @@ let bentleyOttmann = (lines) => {
 
     console.log('eq', eq.toString());
     console.log('sl', sl.toString());
+    console.log('\n');
 
   }
 
