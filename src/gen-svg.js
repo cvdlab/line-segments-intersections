@@ -16,6 +16,7 @@ function generateRandomSegments(count, width, height, generator) {
     let y2 = Math.random() * height;
 
     segments.push({
+      id: i,
       v0: {x: x1, y: y1},
       v1: {x: x2, y: y2}
     });
@@ -46,5 +47,5 @@ function generateRandomSegments(count, width, height, generator) {
 }
 
 
-//generateRandomSegments(100, 500, 500, bentleyOttmann);
-generateRandomSegments(100, 500, 500, trivialIntersections);
+generateRandomSegments(5, 500, 500, bentleyOttmann);
+//generateRandomSegments(100, 500, 500, trivialIntersections);

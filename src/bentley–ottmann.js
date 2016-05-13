@@ -165,9 +165,9 @@ let trivialInserctions = (lines) => {
   return intersections;
 };
 
-console.log('bentley-ottman', bentleyOttmann([
-  E, F, G, H
-]));
+//console.log('bentley-ottman', bentleyOttmann([
+//  E, F, G, H
+//]));
 
 //console.log('trivial-intersections', trivialInserctions([
 //  A, B, C, D
