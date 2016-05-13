@@ -84,7 +84,7 @@ let bentleyOttmann = (lines) => {
     let pos;
     let lineAbove = false, lineBelow = false, intersection = false;
 
-    console.log(event);
+    //console.log(event);
 
     switch (event.type) {
 
@@ -139,7 +139,7 @@ let bentleyOttmann = (lines) => {
   }
 
 
-  console.log('intersections', intersections);
+  //console.log('intersections', intersections);
   return intersections;
 
   //console.log(eq);
