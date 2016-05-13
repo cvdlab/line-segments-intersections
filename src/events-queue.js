@@ -48,7 +48,7 @@ class EventsQueue {
 
     let stopCondition = (pos) => {
       let curVertex = events[pos].vertex;
-      return curVertex.x < vertex.x || curVertex.x === vertex.x && curVertex.y < vertex.y
+      return curVertex.x < vertex.x || (curVertex.x === vertex.x && curVertex.y <= vertex.y)
     };
 
     while (pos < events.length && stopCondition(pos)) {
