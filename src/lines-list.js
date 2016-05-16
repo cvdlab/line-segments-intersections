@@ -2,7 +2,7 @@ class LinesList {
   constructor() {
     this.lines = [];
     this.comparator = (a, b) => {
-      return (a.v0.y < b.v0.y) ? 1 : -1;
+      return (a.v0.y <= b.v0.y) ? 1 : -1;
     };
   }
 

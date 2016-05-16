@@ -89,8 +89,8 @@ let bentleyOttmann = (lines) => {
   let event;
 
   while (event = eq.next()) {
-    let pos;
-    let lineAbove = false, lineBelow = false, intersection = false;
+    let pos, posA, posB;
+    let linePrev = false, lineNext = false, intersection = false;
 
     //console.log(event);
 
@@ -98,19 +98,19 @@ let bentleyOttmann = (lines) => {
 
       case EventsQueue.ADD:
         pos = sl.add(event.line);
-        lineAbove = sl.getLine(pos - 1);
-        if (lineAbove) {
-          intersection = intersect(event.line, lineAbove);
-          if (intersection && intersections.safeAddIntersection(intersection, event.line, lineAbove)) {
-            eq.enqueueSwapEvent(event.line, lineAbove, intersection);
+        linePrev = sl.getPrevLine(pos);
+        if (linePrev) {
+          intersection = intersect(event.line, linePrev);
+          if (intersection && intersections.safeAddIntersection(intersection, event.line, linePrev)) {
+            eq.enqueueSwapEvent(linePrev, event.line, intersection);
           }
         }
 
-        lineBelow = sl.getLine(pos + 1);
-        if (lineBelow) {
-          intersection = intersect(event.line, lineBelow);
-          if (intersection && intersections.safeAddIntersection(intersection, event.line, lineBelow)) {
-            eq.enqueueSwapEvent(event.line, lineBelow, intersection);
+        lineNext = sl.getNextLine(pos);
+        if (lineNext) {
+          intersection = intersect(event.line, lineNext);
+          if (intersection && intersections.safeAddIntersection(intersection, event.line, lineNext)) {
+            eq.enqueueSwapEvent(event.line, lineNext, intersection);
           }
 
         }
@@ -118,30 +118,32 @@ let bentleyOttmann = (lines) => {
 
       case EventsQueue.REMOVE:
         pos = sl.remove(event.line);
-        lineAbove = sl.getLine(pos - 1);
-        lineBelow = sl.getLine(pos);
-        if (lineAbove && lineBelow) {
-          intersection = intersect(lineAbove, lineBelow);
-          if (intersection && intersections.safeAddIntersection(intersection, lineAbove, lineBelow)) {
-            eq.enqueueSwapEvent(lineAbove, lineBelow, intersection);
+        linePrev = sl.getPrevLine(pos);
+        lineNext = sl.getLine(pos); //the old position is now my next position
+        if (linePrev && lineNext) {
+          intersection = intersect(linePrev, lineNext);
+          if (intersection && intersections.safeAddIntersection(intersection, linePrev, lineNext)) {
+            eq.enqueueSwapEvent(linePrev, lineNext, intersection);
           }
         }
         break;
 
       case EventsQueue.SWAP:
-        pos = sl.swap(event.lineA, event.lineB);
-        lineAbove = sl.getLine(pos[1] - 1);
-        lineBelow = sl.getLine(pos[0] + 1);
-        if (lineAbove) {
-          intersection = intersect(event.lineA, lineAbove);
-          if (intersection && intersections.safeAddIntersection(intersection, event.lineA, lineAbove)) {
-            eq.enqueueSwapEvent(event.lineA, lineAbove, intersection);
+        [posB, posA] = sl.swap(event.lineA, event.lineB);
+        linePrev = sl.getPrevLine(posB);
+        lineNext = sl.getNextLine(posA);
+
+        if(linePrev){
+          intersection = intersect(linePrev, event.lineB);
+          if (intersection && intersections.safeAddIntersection(intersection, linePrev, event.lineB)) {
+            eq.enqueueSwapEvent(linePrev, event.lineB, intersection);
           }
         }
-        if (lineBelow) {
-          intersection = intersect(event.lineB, lineBelow);
-          if (intersection && intersections.safeAddIntersection(intersection, event.lineB, lineBelow)) {
-            eq.enqueueSwapEvent(event.lineB, lineBelow, intersection);
+
+        if(lineNext){
+          intersection = intersect(event.lineA, lineNext);
+          if (intersection && intersections.safeAddIntersection(intersection, event.lineA, lineNext)) {
+            eq.enqueueSwapEvent(event.lineA, lineNext, intersection);
           }
         }
         break;
