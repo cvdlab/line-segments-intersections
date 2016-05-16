@@ -10,6 +10,9 @@ module.exports = function lines2svg(lines, intersections, filename) {
     height = Math.max(height, line.v0.y, line.v1.y);
   });
 
+  width += 50;
+  height+= 50;
+
   let fd = fs.openSync(filename, 'w');
 
   fs.writeSync(fd, '<?xml version="1.0" standalone="yes"?>\n');
@@ -22,7 +25,19 @@ module.exports = function lines2svg(lines, intersections, filename) {
   });
 
   intersections.forEach(intersection => {
-    fs.writeSync(fd, '<circle r="2" cx="' + intersection.vertex.x + '" cy="' + intersection.vertex.y + '" fill="red" />\n');
+    fs.writeSync(fd, '<circle r="3" cx="' + intersection.vertex.x + '" cy="' + intersection.vertex.y + '" fill="red" />\n');
+  });
+
+  lines.forEach(line => {
+    fs.writeSync(fd, '<g transform="translate(' + line.v0.x + ',' + line.v0.y + ')">\n');
+    fs.writeSync(fd, '<circle r="1" cx="0" cy="0" fill="black" />\n');
+    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="8" transform="scale(1,-1)" >' + Number(line.v0.x).toFixed(2) + ', ' + Number(line.v0.y).toFixed(2) + '</text>\n');
+    fs.writeSync(fd, '</g>\n');
+
+    fs.writeSync(fd, '<g transform="translate(' + line.v1.x + ',' + line.v1.y + ')">\n');
+    fs.writeSync(fd, '<circle r="1" cx="0" cy="0" fill="black" />\n');
+    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="8" transform="scale(1,-1)" >' + Number(line.v1.x).toFixed(2) + ', ' + Number(line.v1.y).toFixed(2) + '</text>\n');
+    fs.writeSync(fd, '</g>\n');
   });
 
   fs.writeSync(fd, "</g>");
