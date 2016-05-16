@@ -1,6 +1,6 @@
 let intersect = require('./intersect');
 
-let trivialInserctions = (lines) => {
+let trivialIntersections = (lines) => {
   let intersections = [];
   lines.forEach(lineA => {
     lines.forEach(lineB => {
@@ -17,4 +17,4 @@ let trivialInserctions = (lines) => {
   return intersections;
 };
 
-module.exports = trivialInserctions;
+module.exports = trivialIntersections;
