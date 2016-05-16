@@ -115,17 +115,4 @@ let bentleyOttmann = (lines) => {
   return intersections.intersections;
 };
 
-let trivialInserctions = (lines) => {
-  let intersections = [];
-  lines.forEach(lineA => {
-    lines.forEach(lineB => {
-
-      let intersection = intersect(lineA, lineB);
-      if (intersection) intersections.push(intersection);
-
-    })
-  });
-  return intersections;
-};
-
 module.exports = bentleyOttmann;
