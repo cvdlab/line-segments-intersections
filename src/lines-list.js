@@ -13,6 +13,14 @@ class LinesList {
       return false;
   }
 
+  getPrevLine(position) {
+    return this.getLine(position - 1);
+  }
+
+  getNextLine(position) {
+    return this.getLine(position + 1);
+  }
+
   add(line) {
     let comparator = this.comparator;
     let lines = this.lines;
@@ -55,7 +63,7 @@ class LinesList {
     return this.lines.indexOf(searchedLine)
   }
 
-  toString(){
+  toString() {
     return this.lines.map(line => {
       return `${line.id}`;
     }).join(',');
