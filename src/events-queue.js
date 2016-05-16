@@ -1,7 +1,6 @@
 class EventsQueue {
   constructor() {
     this.events = [];
-    this.current = 0;
   }
 
   enqueueAddEvent(line) {
@@ -30,15 +29,9 @@ class EventsQueue {
   }
 
   next() {
-    if(this.current >= this.events.length) return false;
+    if(this.events.length < 1) return false;
 
-    let event = this.events[this.current];
-    this.current++;
-    return event;
-  }
-
-  reset() {
-    this.current = 0;
+    return this.events.shift();
   }
 
   enqueueEvent(event) {
