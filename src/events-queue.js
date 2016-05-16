@@ -58,7 +58,7 @@ class EventsQueue {
     return this.events.map(event => {
       let {type, vertex} = event;
       let linesID = (event.line) ? event.line.id : event.lineA.id + event.lineB.id;
-      return `${type}:${vertex.x}:${vertex.y}:${linesID}`;
+      return `${type}{${linesID}}${Number(vertex.x).toFixed(2)}:${Number(vertex.y).toFixed(2)}`;
     }).join(',');
   }
 }
