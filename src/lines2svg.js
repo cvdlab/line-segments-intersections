@@ -10,14 +10,11 @@ module.exports = function lines2svg(lines, intersections, filename) {
     height = Math.max(height, line.v0.y, line.v1.y);
   });
 
-  width += 50;
-  height+= 50;
-
   let fd = fs.openSync(filename, 'w');
 
   fs.writeSync(fd, '<?xml version="1.0" standalone="yes"?>\n');
-  fs.writeSync(fd, '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="' + height + '" width="' + width + '" >\n');
-  fs.writeSync(fd, '<g transform="translate(0, ' + height + ')" >\n');
+  fs.writeSync(fd, '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="' + (height+50) + '" width="' + (width+100) + '" >\n');
+  fs.writeSync(fd, '<g transform="translate(0, ' + (height+50) + ')" >\n');
   fs.writeSync(fd, '<g transform="scale(1,-1)" >\n');
 
   lines.forEach(segment => {
@@ -31,12 +28,18 @@ module.exports = function lines2svg(lines, intersections, filename) {
   lines.forEach(line => {
     fs.writeSync(fd, '<g transform="translate(' + line.v0.x + ',' + line.v0.y + ')">\n');
     fs.writeSync(fd, '<circle r="1" cx="0" cy="0" fill="black" />\n');
-    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="8" transform="scale(1,-1)" >' + Number(line.v0.x).toFixed(2) + ', ' + Number(line.v0.y).toFixed(2) + '</text>\n');
+    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="8" transform="scale(1,-1)" >' +
+      '{' + line.id + '}' +
+      Number(line.v0.x).toFixed(2) + ', ' +
+      Number(line.v0.y).toFixed(2) + '</text>\n');
     fs.writeSync(fd, '</g>\n');
 
     fs.writeSync(fd, '<g transform="translate(' + line.v1.x + ',' + line.v1.y + ')">\n');
     fs.writeSync(fd, '<circle r="1" cx="0" cy="0" fill="black" />\n');
-    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="8" transform="scale(1,-1)" >' + Number(line.v1.x).toFixed(2) + ', ' + Number(line.v1.y).toFixed(2) + '</text>\n');
+    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="8" transform="scale(1,-1)" >' +
+      '{' + line.id + '}' +
+      Number(line.v1.x).toFixed(2) + ', ' +
+      Number(line.v1.y).toFixed(2) + '</text>\n');
     fs.writeSync(fd, '</g>\n');
   });
 
