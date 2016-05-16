@@ -40,6 +40,10 @@ let bentleyOttmann = (lines) => {
     eq.enqueueRemoveEvent(line);
   });
 
+  console.log('eq', eq.toString());
+  console.log('sl', sl.toString());
+  console.log('');
+
   let event;
 
   while (event = eq.next()) {
