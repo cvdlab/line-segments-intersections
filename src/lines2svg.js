@@ -13,8 +13,8 @@ module.exports = function lines2svg(lines, intersections, filename) {
   let fd = fs.openSync(filename, 'w');
 
   fs.writeSync(fd, '<?xml version="1.0" standalone="yes"?>\n');
-  fs.writeSync(fd, '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="' + (height+50) + '" width="' + (width+100) + '" >\n');
-  fs.writeSync(fd, '<g transform="translate(0, ' + (height+50) + ')" >\n');
+  fs.writeSync(fd, '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="' + (height + 50) + '" width="' + (width + 100) + '" >\n');
+  fs.writeSync(fd, '<g transform="translate(0, ' + (height + 50) + ')" >\n');
   fs.writeSync(fd, '<g transform="scale(1,-1)" >\n');
 
   lines.forEach(segment => {
@@ -22,13 +22,18 @@ module.exports = function lines2svg(lines, intersections, filename) {
   });
 
   intersections.forEach(intersection => {
-    fs.writeSync(fd, '<circle r="3" cx="' + intersection.vertex.x + '" cy="' + intersection.vertex.y + '" fill="red" />\n');
+    fs.writeSync(fd, '<g transform="translate(' + intersection.vertex.x + ',' + intersection.vertex.y + ')">\n');
+    fs.writeSync(fd, '<circle r="2" cx="0" cy="0" fill="red" />\n');
+    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="6" fill="red" transform="scale(1,-1)" >' +
+      Number(intersection.vertex.x).toFixed(2) + ', ' +
+      Number(intersection.vertex.y).toFixed(2) + '</text>\n');
+    fs.writeSync(fd, '</g>\n');
   });
 
   lines.forEach(line => {
     fs.writeSync(fd, '<g transform="translate(' + line.v0.x + ',' + line.v0.y + ')">\n');
     fs.writeSync(fd, '<circle r="1" cx="0" cy="0" fill="black" />\n');
-    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="8" transform="scale(1,-1)" >' +
+    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="6" transform="scale(1,-1)" >' +
       '{' + line.id + '}' +
       Number(line.v0.x).toFixed(2) + ', ' +
       Number(line.v0.y).toFixed(2) + '</text>\n');
@@ -36,7 +41,7 @@ module.exports = function lines2svg(lines, intersections, filename) {
 
     fs.writeSync(fd, '<g transform="translate(' + line.v1.x + ',' + line.v1.y + ')">\n');
     fs.writeSync(fd, '<circle r="1" cx="0" cy="0" fill="black" />\n');
-    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="8" transform="scale(1,-1)" >' +
+    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="6" transform="scale(1,-1)" >' +
       '{' + line.id + '}' +
       Number(line.v1.x).toFixed(2) + ', ' +
       Number(line.v1.y).toFixed(2) + '</text>\n');
