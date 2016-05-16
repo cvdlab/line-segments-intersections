@@ -1,4 +1,4 @@
-let generateRandomSegments = function(count, width, height) {
+let linesGenerator = function(count, width, height) {
 
   let segments = [];
 
@@ -19,4 +19,4 @@ let generateRandomSegments = function(count, width, height) {
   return segments;
 };
 
-module.exports = generateRandomSegments;
+module.exports = linesGenerator;
