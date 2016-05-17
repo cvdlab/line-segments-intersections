@@ -49,22 +49,13 @@ class LinesList {
   }
 
   swap(lineA, lineB, sweepLine) {
-    let comparator = function(a, b) {
-      let aPosition = calculateLinePosition(sweepLine, a);
-      let bPosition = calculateLinePosition(sweepLine, b);
-
-      return (aPosition <= bPosition) ? 1 : -1;
-    };
-
     let posA = this.search(lineA);
     let posB = this.search(lineB);
 
-    this.lines.sort(comparator);
+    this.lines[posA] = lineB;
+    this.lines[posB] = lineA;
 
-    posA = this.search(lineA);
-    posB = this.search(lineB);
-
-    return [posA, posB];
+    return [posB, posA];
   }
 
   search(searchedLine) {
