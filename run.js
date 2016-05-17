@@ -1,5 +1,6 @@
 let bentleyOttmann = require('./src/bentley–ottmann');
 let lines2svg = require('./src/lines2svg');
+let lines2json = require('./src/lines2json');
 let linesGenerator = require('./src/lines-generator');
 let path = require('path');
 
@@ -40,11 +41,13 @@ const I = {id: 5, v0: {x:126.01327686688235, y:219.23409454477795},v1:{x:187.474
 //const C = {id: 1, v0: {x: 150, y: 30}, v1: {x: 210, y: 80}};
 
 
-let lines = linesGenerator(30, 500, 500);
+//let lines = linesGenerator(10, 500, 500);
 //let lines = [E, F, G, H, I];
+let lines = require(path.join(process.cwd(), 'output.json')).lines;
 let intersections = bentleyOttmann(lines);
-let showPoints = false;
+let showPoints = true;
 
 console.log('bentley-ottman', intersections);
 lines2svg(lines, intersections, path.join(process.cwd(), 'output.svg'), showPoints);
+lines2json(lines, intersections, path.join(process.cwd(), 'output.json'));
 
