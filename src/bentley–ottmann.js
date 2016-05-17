@@ -49,13 +49,14 @@ let bentleyOttmann = (lines) => {
   while (event = eq.next()) {
     let pos, posA, posB;
     let linePrev = false, lineNext = false, intersection = false;
+    let sweepLine = event.vertex.x;
 
     //console.log(event);
 
     switch (event.type) {
 
       case EventsQueue.ADD:
-        pos = sl.add(event.line);
+        pos = sl.add(event.line, sweepLine);
         linePrev = sl.getPrevLine(pos);
         if (linePrev) {
           intersection = intersect(event.line, linePrev);
@@ -75,7 +76,7 @@ let bentleyOttmann = (lines) => {
         break;
 
       case EventsQueue.REMOVE:
-        pos = sl.remove(event.line);
+        pos = sl.remove(event.line, sweepLine);
         linePrev = sl.getPrevLine(pos);
         lineNext = sl.getLine(pos); //the old position is now my next position
         if (linePrev && lineNext) {
@@ -87,7 +88,7 @@ let bentleyOttmann = (lines) => {
         break;
 
       case EventsQueue.SWAP:
-        [posB, posA] = sl.swap(event.lineA, event.lineB);
+        [posA, posB] = sl.swap(event.lineA, event.lineB, sweepLine);
         linePrev = sl.getPrevLine(posB);
         lineNext = sl.getNextLine(posA);
 
