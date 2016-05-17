@@ -1,6 +1,6 @@
 let fs = require('fs');
 
-module.exports = function lines2svg(lines, intersections, filename) {
+module.exports = function lines2svg(lines, intersections, filename, showPoints) {
 
   let width = Number.NEGATIVE_INFINITY;
   let height = Number.NEGATIVE_INFINITY;
@@ -24,27 +24,33 @@ module.exports = function lines2svg(lines, intersections, filename) {
   intersections.forEach(intersection => {
     fs.writeSync(fd, '<g transform="translate(' + intersection.vertex.x + ',' + intersection.vertex.y + ')">\n');
     fs.writeSync(fd, '<circle r="2" cx="0" cy="0" fill="red" />\n');
-    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="6" fill="red" transform="scale(1,-1)" >' +
-      Number(intersection.vertex.x).toFixed(2) + ', ' +
-      Number(intersection.vertex.y).toFixed(2) + '</text>\n');
+    if(showPoints) {
+      fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="6" fill="red" transform="scale(1,-1)" >' +
+        Number(intersection.vertex.x).toFixed(2) + ', ' +
+        Number(intersection.vertex.y).toFixed(2) + '</text>\n');
+    }
     fs.writeSync(fd, '</g>\n');
   });
 
   lines.forEach(line => {
     fs.writeSync(fd, '<g transform="translate(' + line.v0.x + ',' + line.v0.y + ')">\n');
     fs.writeSync(fd, '<circle r="1" cx="0" cy="0" fill="black" />\n');
-    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="6" transform="scale(1,-1)" >' +
-      '{' + line.id + '}' +
-      Number(line.v0.x).toFixed(2) + ', ' +
-      Number(line.v0.y).toFixed(2) + '</text>\n');
+    if(showPoints) {
+      fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="6" transform="scale(1,-1)" >' +
+        '{' + line.id + '}' +
+        Number(line.v0.x).toFixed(2) + ', ' +
+        Number(line.v0.y).toFixed(2) + '</text>\n');
+    }
     fs.writeSync(fd, '</g>\n');
 
     fs.writeSync(fd, '<g transform="translate(' + line.v1.x + ',' + line.v1.y + ')">\n');
     fs.writeSync(fd, '<circle r="1" cx="0" cy="0" fill="black" />\n');
-    fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="6" transform="scale(1,-1)" >' +
-      '{' + line.id + '}' +
-      Number(line.v1.x).toFixed(2) + ', ' +
-      Number(line.v1.y).toFixed(2) + '</text>\n');
+    if(showPoints) {
+      fs.writeSync(fd, '<text x="0" y="0" font-family="Verdana" font-size="6" transform="scale(1,-1)" >' +
+        '{' + line.id + '}' +
+        Number(line.v1.x).toFixed(2) + ', ' +
+        Number(line.v1.y).toFixed(2) + '</text>\n');
+    }
     fs.writeSync(fd, '</g>\n');
   });
 
