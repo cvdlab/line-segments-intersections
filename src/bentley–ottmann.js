@@ -34,9 +34,9 @@ let bentleyOttmann = (lines) => {
     eq.enqueueRemoveEvent(line);
   });
 
-  console.log('eq', eq.toString());
-  console.log('sl', sl.toString());
-  console.log('');
+  //console.log('eq', eq.toString());
+  //console.log('sl', sl.toString());
+  //console.log('');
 
   let event;
 
@@ -105,9 +105,9 @@ let bentleyOttmann = (lines) => {
         throw new Error('unrecognized type');
     }
 
-    console.log('eq', eq.toString());
-    console.log('sl', sl.toString());
-    console.log('');
+    //console.log('eq', eq.toString());
+    //console.log('sl', sl.toString());
+    //console.log('');
 
   }
 
