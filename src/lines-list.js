@@ -1,8 +1,9 @@
-let intersect = require('./intersect');
 
 function calculateLinePosition(sweepLine, line) {
-  let sl = {id: "sl", v0: {x: sweepLine, y: Number.MIN_SAFE_INTEGER}, v1: {x: sweepLine, y: Number.MAX_SAFE_INTEGER}};
-  return intersect(sl, line).y;
+
+  let m = (line.v1.y - line.v0.y) / (line.v1.x - line.v0.x);
+
+  return (m * (sweepLine - line.v0.x)) + line.v0.y;
 }
 
 class LinesList {
