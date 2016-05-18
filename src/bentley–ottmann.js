@@ -11,7 +11,6 @@ let verticesComparator = (a, b) => {
   }
 };
 
-
 let rearrangeLinesVertices = function (lines) {
   return lines.map(line => {
     let {v0, v1} = line;
@@ -21,11 +20,6 @@ let rearrangeLinesVertices = function (lines) {
     }
     return line;
   });
-};
-
-
-let linesComparator = (a, b) => {
-  return verticesComparator(a.v0, b.v1);
 };
 
 let bentleyOttmann = (lines) => {

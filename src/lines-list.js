@@ -1,11 +1,3 @@
-
-function calculateLinePosition(sweepLine, line) {
-
-  let m = (line.v1.y - line.v0.y) / (line.v1.x - line.v0.x);
-
-  return (m * (sweepLine - line.v0.x)) + line.v0.y;
-}
-
 class LinesList {
   constructor() {
     this.lines = [];
@@ -34,7 +26,7 @@ class LinesList {
 
     while (pos < lines.length) {
       let currentLine = lines[pos];
-      let currentLinePosition = calculateLinePosition(sweepLine, currentLine);
+      let currentLinePosition = LinesList.calculateLinePosition(sweepLine, currentLine);
 
       if (currentLinePosition > newLinePosition) {
         pos++
@@ -74,6 +66,11 @@ class LinesList {
     return this.lines.map(line => {
       return `${line.id}`;
     }).join(',');
+  }
+
+  static calculateLinePosition(sweepLine, line) {
+    let m = (line.v1.y - line.v0.y) / (line.v1.x - line.v0.x);
+    return (m * (sweepLine - line.v0.x)) + line.v0.y;
   }
 }
 
