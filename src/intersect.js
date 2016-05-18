@@ -1,8 +1,7 @@
-var lineIntersect = require('line-intersect');
+let checkIntersection = require('line-intersect').checkIntersection;
 
 let intersect = function (line1, line2) {
-
-  var result = lineIntersect.checkIntersection(
+  var result = checkIntersection(
     line1.v0.x, line1.v0.y, line1.v1.x, line1.v1.y,
     line2.v0.x, line2.v0.y, line2.v1.x, line2.v1.y
   );
