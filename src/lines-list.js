@@ -29,7 +29,7 @@ class LinesList {
     let comparator = function(a, b) {
       let aPosition = calculateLinePosition(sweepLine, a);
       let bPosition = calculateLinePosition(sweepLine, b);
-
+      if (aPosition === bPosition) return 0;
       return (aPosition <= bPosition) ? 1 : -1;
     };
 
