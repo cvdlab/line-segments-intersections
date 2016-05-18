@@ -27,17 +27,24 @@ class LinesList {
   }
 
   add(line, sweepLine) {
-    let comparator = function(a, b) {
-      let aPosition = calculateLinePosition(sweepLine, a);
-      let bPosition = calculateLinePosition(sweepLine, b);
-      if (aPosition === bPosition) return 0;
-      return (aPosition <= bPosition) ? 1 : -1;
-    };
 
-    this.lines.push(line);
-    this.lines.sort(comparator);
+    let lines = this.lines;
+    let newLinePosition = line.v0.y;
+    let pos = 0;
 
-    return this.search(line);
+    while (pos < lines.length) {
+      let currentLine = lines[pos];
+      let currentLinePosition = calculateLinePosition(sweepLine, currentLine);
+
+      if (currentLinePosition > newLinePosition) {
+        pos++
+      } else {
+        break;
+      }
+    }
+
+    lines.splice(pos, 0, line);
+    return pos;
   }
 
   remove(line, sweepLine) {
