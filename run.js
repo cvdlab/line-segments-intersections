@@ -4,6 +4,7 @@ let lines2json = require('./src/lines2json');
 let linesGenerator = require('./src/lines-generator');
 let path = require('path');
 let now = require("performance-now");
+let splitLines = require("./src/split-lines");
 
 //const A = {v0: {x: 10, y: 10}, v1: {x: 0, y: 0}, id: 'A'};
 //const B = {v0: {x: 10, y: 0}, v1: {x: 0, y: 10}, id: 'B'};
@@ -54,6 +55,13 @@ var end = now();
 console.log('bentley-ottman', intersections);
 console.log('benchmark (ms)', (end - start).toFixed(3));
 
-lines2svg(lines, intersections, path.join(process.cwd(), 'output.svg'), showPoints);
+lines2svg(lines, intersections, path.join(process.cwd(), 'output1.svg'), showPoints);
 lines2json(lines, intersections, path.join(process.cwd(), 'output.json'));
+
+
+
+let splittedLines = splitLines(lines, intersections);
+console.log("splitted-lines", splittedLines);
+lines2svg(splittedLines, [], path.join(process.cwd(), 'output2.svg'), showPoints);
+
 
